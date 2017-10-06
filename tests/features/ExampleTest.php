@@ -2,12 +2,7 @@
 
 class ExampleTest extends FeaturesTestCase
 {
-   /**
-     * A basic functional test example.
-     *
-     * @return void
-     */
-    function test_basic_example()
+   function test_basic_example()
     {
         $user = factory(App\User::class)->create([
             'name' => 'Francisco Javier',

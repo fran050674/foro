@@ -30,14 +30,14 @@ class PostListTest extends FeaturesTestCase
         ]);
 
         $posts = factory(Post::class)->times(15)->create([
-            'created_at' => Carbon::now()->subDays(1)
+            'created_at' => Carbon::now()->subDay()
         ]);
 
         $last = factory(Post::class)->create([
             'title' => 'El post mas reciente',
             'created_at' => Carbon::now()
         ]);
-
+        // dd($first->toArray());
         // dd($posts->toArray());
 
         //When

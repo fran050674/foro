@@ -1,5 +1,6 @@
 <?php
 
+use App\Comment;
 use App\Post;
 use App\User;
 
@@ -30,7 +31,20 @@ $factory->define(Post::class, function (Faker\Generator $faker, $attributes) {
     return [
         'title' => $faker->sentence,
         'content' => $faker->paragraph,
-        'pending' => $faker->boolean(),
+        'pending' => true,
+        'user_id' => function () {
+            // dd('esto se va a ejecutar');
+            return factory(User::class)->create()->id;
+        },
+    ];
+});
+
+$factory->define(Comment::class, function (Faker\Generator $faker, $attributes) {
+    return [
+        'comment' => $faker->paragraph,
+        'post_id' => function () {
+            return factory(Post::class)->create()->id;
+        },
         'user_id' => function () {
             // dd('esto se va a ejecutar');
             return factory(User::class)->create()->id;

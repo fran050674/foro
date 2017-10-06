@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Comment;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -10,9 +11,23 @@ class Post extends Model
 {
     protected $fillable = ['title', 'content'];
 
+    protected $casts = [
+        'pending' => 'boolean'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function latestComments()
+    {
+        return $this->comments()->orderBy('created_at', 'DESC');
     }
 
     public function setTitleAttribute($value)

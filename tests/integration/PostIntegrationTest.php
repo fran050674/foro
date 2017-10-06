@@ -1,5 +1,7 @@
 <?php
 
+use App\Post;
+
 class PostIntegrationTest extends FeaturesTestCase
 {
 
@@ -23,7 +25,7 @@ class PostIntegrationTest extends FeaturesTestCase
          );
     }
 
- /*   function test_the_url_of_the_post_is_generated()
+    function test_the_url_of_the_post_is_generated()
     {
         $user = $this->defaultUser();
         $post = factory(Post::class)->make();
@@ -33,5 +35,5 @@ class PostIntegrationTest extends FeaturesTestCase
             $post->url,
             route('posts.show', [$post->id, $post->slug])
         );
-    }*/
+    }
 }
