@@ -3,7 +3,7 @@
 @section('content')
     <h1>{{ $post->title }}</h1>
 
-    <P> {{ $post->content }}</P>
+    {!! $post->safe_html_content !!}
 
     <P> {{ $post->user->name }}</P>
 

@@ -4,6 +4,7 @@ namespace App;
 
 use App\Comment;
 use App\User;
+use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -43,5 +44,10 @@ class Post extends Model
                                 $this->id,
                                 $this->slug
                             ]);
+    }
+
+    public function getSafeHtmlContentAttribute()
+    {
+        return Markdown::convertToHtml(e($this->content));
     }
 }
