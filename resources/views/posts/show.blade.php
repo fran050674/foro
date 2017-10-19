@@ -7,14 +7,28 @@
 
     <P> {{ $post->user->name }}</P>
 
+    @if (auth()->check())
+        @if (!auth()->user()->isSubscribedTo($post))
+            {!! Form::open(['route' => ['posts.subscribe', $post], 'method' => 'POST']) !!}
+                <button type="submit">Suscribirse al post</button>
+            {!! Form::close() !!}
+        @else
+            {!! Form::open(['route' => ['posts.unsubscribe', $post], 'method' => 'DELETE']) !!}
+                <button type="submit">Desuscribirse del post</button>
+            {!! Form::close() !!}
+        @endif
+    @endif
+
+
+
     <h4>Comentarios</h4>
 
-    {{ Form::open(['route' => ['comments.store', $post], 'method' => 'POST']) }}
+    {!! Form::open(['route' => ['comments.store', $post], 'method' => 'POST']) !!}
         {!! Field::textarea('comment') !!}
         <button type="submit">
             Publicar comentario
         </button>
-    {{ Form::close() }}
+    {!! Form::close() !!}
 
     @foreach ($post->latestComments as $comment)
         <article class="{{ $comment->answer ? 'answer' : '' }}">
